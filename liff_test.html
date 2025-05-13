@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIFF Init Test</title>
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+</head>
+<body>
+    <h1>LIFF Initialization Test</h1>
+    <p id="message">Initializing LIFF...</p>
+    <script>
+        async function initializeLiff() {
+            try {
+                await liff.init({ liffId: "YOUR_LIFF_ID" }); // ★ここにあなたのLIFF ID
+                document.getElementById("message").textContent = "LIFF initialized successfully!";
+                if (liff.isInClient()) {
+                    document.getElementById("message").textContent += " (Running in LINE app)";
+                } else {
+                    document.getElementById("message").textContent += " (Running in external browser)";
+                }
+            } catch (error) {
+                document.getElementById("message").textContent = "LIFF initialization failed: " + error;
+                console.error("LIFF Init Test Error:", error);
+            }
+        }
+        initializeLiff();
+    </script>
+</body>
+</html>
